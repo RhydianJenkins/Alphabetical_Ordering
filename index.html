@@ -1,0 +1,59 @@
+<html><head>
+	<title>Alphabet Sort</title>
+</head>
+<body>
+
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script>
+		
+		var output = [];
+		
+		function order() {	
+			
+			var input = $('#references').val().split(/\n/);
+		
+			for (var i=0; i < input.length; i++) {
+				// only push this line if it contains a non whitespace character.
+				if (/\S/.test(input[i])) {
+					output.push($.trim(input[i]));
+				}
+			}
+			
+			output.sort();
+			printArray();
+			output = [];
+		
+		}
+		
+		function printArray() {
+		
+			document.getElementById('outputH3').innerHTML = 'This is the list in alphabetical order.';		
+			document.getElementById('outputP').innerHTML = '';
+			document.getElementById('outputP').innerHTML += '<ol>';
+			
+			for (var i=0; i < output.length; i++) {
+				document.getElementById('outputP').innerHTML += '<li>'+output[i]+'</li><br />';	
+			}
+
+			document.getElementById('outputP').innerHTML += '</ol>';
+					
+		}
+
+	</script>
+	
+	<div id="input">
+		<h3>Paste in references. Separate each reference by a new line.</h3>
+		<form id="mainForm">
+			
+			<textarea id="references"></textarea><br />
+			<button type="button" name="submit" id="submit" onclick="order()">Order References</button>
+
+		</form>	
+	</div>
+	
+	<div id="output">
+		<h3 id="outputH3"><h3>
+		<p id="outputP"></p>
+	</div>
+	
+</body></html>
